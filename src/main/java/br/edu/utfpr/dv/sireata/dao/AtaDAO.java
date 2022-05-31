@@ -314,7 +314,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -343,7 +343,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 
 		}
 	}
@@ -373,7 +373,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 
 		}
 	}
@@ -403,7 +403,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -432,7 +432,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -483,7 +483,7 @@ public class AtaDAO {
 			
 			return ata.getIdAta();
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 
 		}
 	}
@@ -582,7 +582,7 @@ public class AtaDAO {
 				return false;
 			}
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -600,7 +600,7 @@ public class AtaDAO {
 		
 			return rs.next();
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -618,7 +618,7 @@ public class AtaDAO {
 		
 			return rs.next();
 		}finally{
-			endConnection(conn,stmt,rs);
+			endConnection(conn,stmt);
 
 		}
 	}
@@ -672,7 +672,7 @@ public class AtaDAO {
 		}
 	}
 
-	public void endConnection(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
+	public void endConnection(Connection conn, Statement stmt) throws SQLException{
 		conn.setAutoCommit(true);
 		if((stmt != null) && !stmt.isClosed())
 			stmt.close();
@@ -680,7 +680,7 @@ public class AtaDAO {
 			conn.close();
 	}
 
-	public String connectionString() throws SQLException {
+	public Connection connectionString() throws SQLException {
 		return connectionString();
 	}
 }
