@@ -21,7 +21,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.prepareStatement(
 						"SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
 						"FROM atas INNER JOIN orgaos ON orgaos.idOrgao=atas.idOrgao " +
@@ -55,7 +55,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.prepareStatement(
 						"SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
 						"FROM atas INNER JOIN orgaos ON orgaos.idOrgao=atas.idOrgao " +
@@ -92,7 +92,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.prepareStatement(
 				"SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
 				"FROM atas INNER JOIN orgaos ON orgaos.idOrgao=atas.idOrgao " +
@@ -127,7 +127,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.prepareStatement(
 				"SELECT MAX(numero) AS numero FROM atas WHERE idOrgao = ? AND YEAR(data) = ? AND tipo = ?");
 		
@@ -158,7 +158,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -197,7 +197,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -230,7 +230,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -263,7 +263,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -296,7 +296,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -314,12 +314,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
 		}
 	}
 	
@@ -329,7 +324,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn =connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -348,12 +343,8 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
+
 		}
 	}
 	
@@ -363,7 +354,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -382,12 +373,8 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
+
 		}
 	}
 	
@@ -397,7 +384,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -416,12 +403,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
 		}
 	}
 	
@@ -431,7 +413,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT DISTINCT atas.*, orgaos.nome AS orgao, p.nome AS presidente, s.nome AS secretario " +
@@ -450,12 +432,7 @@ public class AtaDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
 		}
 	}
 	
@@ -466,7 +443,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			
 			if(insert){
 				stmt = conn.prepareStatement("INSERT INTO atas(idOrgao, idPresidente, idSecretario, tipo, numero, data, local, localCompleto, dataLimiteComentarios, consideracoesIniciais, audio, documento, publicada, dataPublicacao, aceitarComentarios) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, 0, NULL, 0)", Statement.RETURN_GENERATED_KEYS);
@@ -506,12 +483,8 @@ public class AtaDAO {
 			
 			return ata.getIdAta();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
+
 		}
 	}
 	
@@ -520,7 +493,7 @@ public class AtaDAO {
 		PreparedStatement stmt = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.prepareStatement("UPDATE atas SET documento=?, dataPublicacao=?, publicada=1, aceitarComentarios=0 WHERE publicada=0 AND idAta=?");
 		
 			stmt.setBytes(1, documento);
@@ -529,10 +502,7 @@ public class AtaDAO {
 			
 			stmt.execute();
 		}finally{
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -541,7 +511,7 @@ public class AtaDAO {
 		Statement stmt = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			stmt.execute("UPDATE atas SET aceitarComentarios=1 WHERE publicada=0 AND idAta=" + String.valueOf(idAta));
@@ -558,15 +528,12 @@ public class AtaDAO {
 		Statement stmt = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			stmt.execute("UPDATE atas SET aceitarComentarios=0 WHERE idAta=" + String.valueOf(idAta));
 		}finally{
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -602,7 +569,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();;
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT COUNT(comentarios.idComentario) AS qtde FROM comentarios " +
@@ -615,12 +582,7 @@ public class AtaDAO {
 				return false;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
 		}
 	}
 	
@@ -630,7 +592,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.idAta FROM atas " +
@@ -638,12 +600,7 @@ public class AtaDAO {
 		
 			return rs.next();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
 		}
 	}
 	
@@ -653,7 +610,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.idAta FROM atas " +
@@ -661,12 +618,8 @@ public class AtaDAO {
 		
 			return rs.next();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt,rs);
+
 		}
 	}
 	
@@ -676,7 +629,7 @@ public class AtaDAO {
 		ResultSet rs = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn =  connectionString();
 			stmt = conn.createStatement();
 		
 			rs = stmt.executeQuery("SELECT atas.publicada FROM atas " +
@@ -688,12 +641,7 @@ public class AtaDAO {
 				return false;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt);
 		}
 	}
 	
@@ -702,7 +650,7 @@ public class AtaDAO {
 		Statement stmt = null;
 		
 		try{
-			conn = ConnectionDAO.getInstance().getConnection();
+			conn = connectionString();
 			conn.setAutoCommit(false);
 			stmt = conn.createStatement();
 			
@@ -720,11 +668,19 @@ public class AtaDAO {
 			throw ex;
 		}finally{
 			conn.setAutoCommit(true);
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			endConnection(conn,stmt);
 		}
 	}
 
+	public void endConnection(Connection conn, Statement stmt, ResultSet rs) throws SQLException{
+		conn.setAutoCommit(true);
+		if((stmt != null) && !stmt.isClosed())
+			stmt.close();
+		if(!conn.isClosed())
+			conn.close();
+	}
+
+	public String connectionString() throws SQLException {
+		return connectionString();
+	}
 }
